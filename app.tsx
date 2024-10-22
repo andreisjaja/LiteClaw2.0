@@ -1,4 +1,4 @@
-// App.tsx
+
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -8,16 +8,14 @@ import RegisterScreen from './app/screens/RegisterScreen';
 
 const Stack = createNativeStackNavigator();
 
-const App = () => {
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="MainScree">
-        <Stack.Screen name="MainScree" component={MainScreen} options={{ title: 'Inicio' }} />
-        <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ title: 'Iniciar Sesión' }} />
-        <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{ title: 'Registrarse' }} />
+      <Stack.Navigator initialRouteName="MainScreen">
+        <Stack.Screen name="MainScreen" component={MainScreen} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
-
-export default App;
+}

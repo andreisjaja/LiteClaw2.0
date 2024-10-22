@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '../../types';
+import { RootStackParamList } from '.expo/types/types';
 
-type MainScreenNavigationProp = NavigationProp<RootStackParamList, 'MainScreen'>;
+type MainScreenNavigationProp = NavigationProp<RootStackParamList, 'MainScree'>;
 
-const MainScreen: React.FC = () => {
+const MainScree = () => {
   const navigation = useNavigation<MainScreenNavigationProp>();
 
   return (
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainScreen;
+export default MainScree;
