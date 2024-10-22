@@ -1,14 +1,11 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '../types';
-
-
-
+import { RootStackParamList } from '../../types';
 
 type MainScreenNavigationProp = NavigationProp<RootStackParamList, 'MainScreen'>;
 
-const MainScreen = () => {
+const MainScreen: React.FC = () => {
   const navigation = useNavigation<MainScreenNavigationProp>();
 
   return (

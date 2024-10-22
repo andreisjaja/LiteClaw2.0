@@ -5,11 +5,14 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "jsx": "react"  // Añade esta línea
   },
   "include": [
     "app/**/*.ts",
     "app/**/*.tsx",
-    "app/types.ts"
+    "types.ts",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
   ]
 }
