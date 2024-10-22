@@ -17,8 +17,7 @@ export default function Login() {
       return;
     }
     setError("");
-    // TODO: connect to Firebase authentication
-    // Example of navigation after successful login
+  
     navigation.navigate('MainScree');
   };
 

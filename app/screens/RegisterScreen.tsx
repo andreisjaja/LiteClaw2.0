@@ -18,8 +18,7 @@ export default function Register() {
       return;
     }
     setError("");
-    // TODO: connect to Firebase authentication
-    // Navegar a la pantalla principal después de registrar
+
     navigation.navigate('MainScree');
   };
 
