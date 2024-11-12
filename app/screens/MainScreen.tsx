@@ -5,7 +5,7 @@ import { RootStackParamList } from '../../.expo/types/types';
 
 type MainScreenNavigationProp = NavigationProp<RootStackParamList, 'MainScree'>;
 
-const MainScree = () => {
+const MainScreen = () => {
   const navigation = useNavigation<MainScreenNavigationProp>();
 
   return (
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainScree;
+export default MainScreen;

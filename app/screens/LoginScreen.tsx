@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '../../.expo/types/types'; // Asegúrate de que el path sea correcto
+import { RootStackParamList } from '../../.expo/types/types'; 
 import { FIREBASE_AUTH } from '../utils/FirebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-// Define el tipo para la navegación
+
 type LoginScreenNavigationProp = NavigationProp<RootStackParamList, 'LoginScreen'>;
 
 export default function Login() {
