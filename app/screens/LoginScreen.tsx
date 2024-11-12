@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '.expo/types/types';
+import { RootStackParamList } from '../../.expo/types/types'; // Asegúrate de que el path sea correcto
 import { FIREBASE_AUTH } from '../utils/FirebaseConfig';
-import { signInWithEmailAndPassword } from 'firebase/auth'; // Importa el método correcto
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
+// Define el tipo para la navegación
 type LoginScreenNavigationProp = NavigationProp<RootStackParamList, 'LoginScreen'>;
 
 export default function Login() {
@@ -16,18 +17,17 @@ export default function Login() {
 
   const onSubmit = () => {
     if (!email || !password) {
-      setError("Please enter your username and password.");
+      setError("Por favor, ingrese su usuario y contraseña.");
       return;
     }
 
     setError("");
     
-    // Utiliza el método correcto para la versión más reciente de Firebase
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        navigation.navigate('MainScreen'); // Navegar a la pantalla Home
+        navigation.navigate('HomeScreen');
       })
-      .catch((err: any) => { // Especificar tipo 'any' o un tipo más específico si lo conoces
+      .catch((err: any) => {
         setError(err.message);
       });
   };
