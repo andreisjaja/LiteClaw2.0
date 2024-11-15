@@ -4,7 +4,7 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 
 import { RootStackParamList } from '.expo/types/types';
 import { FIREBASE_AUTH } from '../utils/FirebaseConfig';
-import { signInWithEmailAndPassword } from 'firebase/auth'; // Importa el método correcto
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
 type LoginScreenNavigationProp = NavigationProp<RootStackParamList, 'LoginScreen'>;
