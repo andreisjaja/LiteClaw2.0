@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '.expo/types/types';
+import { FIREBASE_AUTH } from '../utils/FirebaseConfig'; // Asegúrate de configurar Firebase aquí
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 type RegisterScreenNavigationProp = NavigationProp<RootStackParamList, 'RegisterScreen'>;
 
@@ -11,15 +13,33 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigation = useNavigation<RegisterScreenNavigationProp>();
+  const auth = FIREBASE_AUTH;
 
   const onSubmit = () => {
     if (!email || !password || !username) {
-      setError("Por favor, complete todos los campos.");
+      setError('Por favor, complete todos los campos.');
       return;
     }
-    setError("");
 
-    navigation.navigate('MainScreen');
+    setError('');
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        // Si el registro es exitoso, navega a LoginScreen
+        navigation.navigate('LoginScreen');
+      })
+      .catch((err: any) => {
+        // Maneja los errores de Firebase
+        if (err.code === 'auth/email-already-in-use') {
+          setError('Este correo ya está registrado.');
+        } else if (err.code === 'auth/invalid-email') {
+          setError('El correo no es válido.');
+        } else if (err.code === 'auth/weak-password') {
+          setError('La contraseña es demasiado débil.');
+        } else {
+          setError('Ha ocurrido un error. Inténtelo de nuevo.');
+        }
+      });
   };
 
   return (
@@ -46,7 +66,7 @@ export default function Register() {
         value={password}
         onChangeText={setPassword}
       />
-      <Button title="Registrarse" color='#754b73' onPress={onSubmit} />
+      <Button title="Registrarse" color="#754b73" onPress={onSubmit} />
     </View>
   );
 }
