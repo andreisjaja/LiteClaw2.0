@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainScreen from './app/screens/MainScree';
 import LoginScreen from './app/screens/LoginScreen';
 import RegisterScreen from './app/screens/RegisterScreen';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,3 +20,7 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+ 
+});

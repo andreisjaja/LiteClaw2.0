@@ -19,7 +19,7 @@ export default function Register() {
     }
     setError("");
 
-    navigation.navigate('MainScree');
+    navigation.navigate('MainScreen');
   };
 
   return (
