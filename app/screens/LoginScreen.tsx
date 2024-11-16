@@ -3,7 +3,7 @@ import { View, TextInput, Button, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 
 import { RootStackParamList } from '../types';
-import { FIREBASE_AUTH } from '../utils/FirebaseConfig';
+import { auth } from '../utils/FirebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
@@ -14,8 +14,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigation = useNavigation<LoginScreenNavigationProp>();
-  const auth = FIREBASE_AUTH;
-
+  
   const onSubmit = () => {
     if (!email || !password) {
       setError("Please enter your username and password.");

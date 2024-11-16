@@ -1,6 +1,8 @@
 export type RootStackParamList = {
-    MainScreen: undefined; // No pasa parámetros a esta pantalla
-    LoginScreen: undefined; // Tampoco pasa parámetros a esta pantalla
-    RegisterScreen: undefined; // No pasa parámetros
-    BibliotecaScreen: undefined; // BibliotecaScreen necesita un parámetro 'userId' (de tipo string)
+    MainScreen: undefined;
+    LoginScreen: undefined;
+    RegisterScreen: undefined;
+    BibliotecaScreen: undefined; // Si necesitas pasar algo, especifica el tipo
+    CategoriaScreen: undefined;
+    UsuarioScreen: undefined;
 };

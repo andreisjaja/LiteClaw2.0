@@ -7,6 +7,7 @@ import MainScreen from './app/screens/MainScreen';
 import LoginScreen from './app/screens/LoginScreen';
 import RegisterScreen from './app/screens/RegisterScreen';
 import BibliotecaScreen from './app/screens/BibliotecaScreen';
+import UsuarioScreen from './app/screens/UsuarioScreen';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen name="BibliotecaScreen" component={BibliotecaScreen} />
+        <Stack.Screen name="UsuarioScreen" component={UsuarioScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '.expo/types/types';
-import { FIREBASE_AUTH } from '../utils/FirebaseConfig'; // Asegúrate de configurar Firebase aquí
+import { RootStackParamList } from '../types';
+import { auth } from '../utils/FirebaseConfig'; // Asegúrate de configurar Firebase aquí
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 type RegisterScreenNavigationProp = NavigationProp<RootStackParamList, 'RegisterScreen'>;
@@ -13,7 +13,14 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigation = useNavigation<RegisterScreenNavigationProp>();
-  const auth = FIREBASE_AUTH;
+
+  useEffect(() => {
+    // Verificar si el usuario ya está autenticado
+    const user = auth.currentUser;
+    if (user) {
+      navigation.navigate('BibliotecaScreen'); // Redirigir si está autenticado
+    }
+  }, []);
 
   const onSubmit = () => {
     if (!email || !password || !username) {

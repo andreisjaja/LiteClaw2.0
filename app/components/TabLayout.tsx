@@ -1,61 +1,66 @@
 import React from 'react';
-import { Pressable, View, StyleSheet } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; // Importa el creador de pestañas
+import { Pressable, View, StyleSheet, Text } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useColorScheme } from './useColorScheme';
-import SearchBar from './SearchBar'; // Importa la barra de búsqueda
-import BibliotecaScreen from '../screens/BibliotecaScreen';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../types';
 
-// Colores
-const iconColor = '#a987a8'; // Color de los iconos
-const pressedColor = '#511f52'; // Color cuando el icono es presionado
+// Define el tipo de navegación
+type Navigation = NavigationProp<RootStackParamList>;
 
-const Tab = createBottomTabNavigator(); // Crea el componente de navegación de pestañas
-
-// Función para manejar la búsqueda
-const handleSearch = (query: string) => {
-  console.log('Buscando:', query);
-};
-
-// Componente principal de navegación con barra de navegación inferior
 export default function TabLayout() {
-  const colorScheme = useColorScheme(); // Obtiene el esquema de color
+  const navigation = useNavigation<Navigation>(); // Tipado de useNavigation
 
   return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarActiveTintColor: iconColor,
-        tabBarInactiveTintColor: iconColor,
-        tabBarShowLabel: false, // Oculta las etiquetas de texto de las pestañas
-        headerShown: true, // Mostrar encabezado en las pantallas
-        header: () => (
-          <View style={{ padding: 10 }}>
-            <SearchBar onSearch={handleSearch} />
-          </View>
-        ),
-      }}
-    >
-      {/* Pantalla 1 - Home */}
-      <Tab.Screen
-        name="Biblioteca"
-        component={BibliotecaScreen} // Aquí va el componente de tu pantalla
-        options={{
-          tabBarIcon: ({ size }) => (
-            <Pressable>
-              {({ pressed }) => (
-                <MaterialCommunityIcons
-                  name="home"
-                  color={pressed ? pressedColor : iconColor}
-                  size={size}
-                />
-              )}
-            </Pressable>
-          ),
-        }}
-      />
-      
-     
-      
-    </Tab.Navigator>
+    <View style={styles.container}>
+      <View style={styles.buttonsContainer}>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate('BibliotecaScreen')}
+        >
+          <MaterialCommunityIcons name="book" color="#a987a8" size={30} />
+          <Text style={styles.buttonText}>Biblioteca</Text>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate('LoginScreen')}
+        >
+          <MaterialCommunityIcons name="menu" color="#a987a8" size={30} />
+          <Text style={styles.buttonText}>Categoría</Text>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate('UsuarioScreen')}
+        >
+          <MaterialCommunityIcons name="account" color="#a987a8" size={30} />
+          <Text style={styles.buttonText}>Usuario</Text>
+        </Pressable>
+      </View>
+    </View>
   );
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    padding: 0,
+    backgroundColor: '#a987a8',
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#fff',
+    width: '100%',
+  },
+  button: {
+    alignItems: 'center',
+    padding: 10,
+  },
+  buttonText: {
+    color: '#a987a8',
+    marginTop: 5,
+    fontSize: 12,
+  },
+});

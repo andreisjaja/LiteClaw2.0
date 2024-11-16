@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '../types';
 import SearchBar from '../components/SearchBar'; // Asegúrate de que la ruta sea correcta
-
-type BibliotecaScreenNavigationProp = NavigationProp<RootStackParamList, 'BibliotecaScreen'>;
+import TabLayout from '../components/TabLayout'; // Importa el componente TabLayout
+import { BackHandler } from 'react-native';
 
 const BibliotecaScreen = () => {
-  const navigation = useNavigation<BibliotecaScreenNavigationProp>();
-  
   const [showFavorites, setShowFavorites] = useState(false);
   const [searchQuery, setSearchQuery] = useState(''); // Estado para almacenar la búsqueda
 
@@ -34,34 +30,37 @@ const BibliotecaScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Biblioteca de Favoritos</Text>
-      
-      {/* Agregar SearchBar */}
-      <SearchBar onSearch={handleSearch} />
+      <View style={styles.mainContent}>
+        {/* Agregar SearchBar */}
+        <SearchBar onSearch={handleSearch} />
 
-      {/* Botón personalizado */}
-      <TouchableOpacity style={styles.button} onPress={toggleFavorites}>
-        <Text style={styles.buttonText}>Mostrar Favoritos</Text>
-      </TouchableOpacity>
-      
-      {showFavorites && (
-        <FlatList
-          data={filteredBooks}  // Usar los libros filtrados
-          renderItem={({ item }) => (
-            <View style={styles.bookItem}>
-              <Text style={styles.bookText}>{item.title}</Text>
-            </View>
-          )}
-          keyExtractor={(item) => item.id}
-        />
-      )}
-      
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('MainScreen')}
-      >
-        <Text style={styles.buttonText}>Ir a la pantalla principal</Text>
-      </TouchableOpacity>
+        <Text style={styles.title}>Biblioteca de Favoritos</Text>
+
+        {/* Botón personalizado */}
+        <TouchableOpacity style={styles.button} onPress={toggleFavorites}>
+          <Text style={styles.buttonText}>Mostrar Favoritos</Text>
+        </TouchableOpacity>
+
+        {showFavorites && (
+          <FlatList
+            data={filteredBooks} // Usar los libros filtrados
+            renderItem={({ item }) => (
+              <View style={styles.bookItem}>
+                <Text style={styles.bookText}>{item.title}</Text>
+              </View>
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        )}
+      </View>
+
+      {/* Separador visual entre contenido principal y TabLayout */}
+      <View style={styles.separador} />
+
+      {/* TabLayout alineado al final */}
+      <View style={styles.tabLayoutContainer}>
+        <TabLayout />
+      </View>
     </View>
   );
 };
@@ -69,10 +68,15 @@ const BibliotecaScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 16,
     backgroundColor: '#ebeaeb',
+  },
+  mainContent: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: '100%',
   },
   title: {
     fontSize: 24,
@@ -82,12 +86,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ebeaeb',
   },
   button: {
-    backgroundColor: '#754b73',  // Cambia aquí el color de fondo del botón
+    backgroundColor: '#754b73', // Cambia aquí el color de fondo del botón
     padding: 10,
     borderRadius: 20,
     marginBottom: 10,
     alignItems: 'center',
-    width: 200,  // Opcional, puedes ajustar el ancho
+    width: 200, // Opcional, puedes ajustar el ancho
   },
   buttonText: {
     color: '#fff',
@@ -102,6 +106,17 @@ const styles = StyleSheet.create({
   },
   bookText: {
     fontSize: 18,
+  },
+  separador: {
+    width: '100%',
+    height: 1,
+    backgroundColor: '#ddd',
+    marginVertical: 20,
+  },
+  tabLayoutContainer: {
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    width: '100%',
   },
 });
 
