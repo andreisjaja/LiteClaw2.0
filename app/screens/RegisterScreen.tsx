@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, Text, StyleSheet, Image } from 'react-native';
+import { View, TextInput, Button, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../types';
 import { auth } from '../utils/FirebaseConfig'; // Asegúrate de configurar Firebase aquí
@@ -66,7 +66,13 @@ export default function Register() {
         value={password}
         onChangeText={setPassword}
       />
-      <Button title="Registrarse" color="#754b73" onPress={onSubmit} />
+      <TouchableOpacity style={styles.button} onPress={onSubmit}>
+          <Text style={styles.buttonText}>Registrarse</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LoginScreen')}>
+          <Text style={styles.buttonText}>Iniciar Sesión</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -105,5 +111,16 @@ const styles = StyleSheet.create({
     color: 'red',
     marginBottom: 16,
     textAlign: 'center',
+  },
+  button: {
+    backgroundColor: '#754b73',
+    padding: 10,
+    borderRadius: 20,
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
   },
 });
