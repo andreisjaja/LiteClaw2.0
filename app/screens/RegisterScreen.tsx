@@ -14,13 +14,6 @@ export default function Register() {
   const [error, setError] = useState('');
   const navigation = useNavigation<RegisterScreenNavigationProp>();
 
-  useEffect(() => {
-    // Verificar si el usuario ya está autenticado
-    const user = auth.currentUser;
-    if (user) {
-      navigation.navigate('BibliotecaScreen'); // Redirigir si está autenticado
-    }
-  }, []);
 
   const onSubmit = () => {
     if (!email || !password || !username) {

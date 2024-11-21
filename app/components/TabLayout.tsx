@@ -22,7 +22,7 @@ export default function TabLayout() {
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate('LoginScreen')}
+          onPress={() => navigation.navigate('CategoriaScreen')}
         >
           <MaterialCommunityIcons name="menu" color="#a987a8" size={30} />
           <Text style={styles.buttonText}>Categoría</Text>
@@ -38,7 +38,6 @@ export default function TabLayout() {
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

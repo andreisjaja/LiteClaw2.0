@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import SearchBar from '../components/SearchBar';
-import TabLayout from '../components/TabLayout'; 
+import TabLayout from '../components/TabLayout'; // Importa el componente TabLayout
 import { BackHandler } from 'react-native';
 
-const BibliotecaScreen = () => {
+const CategoriaScreen = () => {
   const [showFavorites, setShowFavorites] = useState(false);
   const [searchQuery, setSearchQuery] = useState(''); // Estado para almacenar la búsqueda
 
@@ -12,6 +12,8 @@ const BibliotecaScreen = () => {
     { id: '1', title: 'El Señor de los Anillos' },
     { id: '2', title: 'Cien Años de Soledad' },
     { id: '3', title: '1984' },
+    { id: '4', title: 'Martin Fierro' },
+    { id: '5', title: 'Amor y Prejuicio' },
   ];
 
   // Filtrar libros según la búsqueda
@@ -34,7 +36,7 @@ const BibliotecaScreen = () => {
         {/* Agregar SearchBar */}
         <SearchBar onSearch={handleSearch} />
 
-        <Text style={styles.title}>Biblioteca de Favoritos</Text>
+        <Text style={styles.title}>Categoria de Favoritos</Text>
 
         {/* Botón personalizado */}
         <TouchableOpacity style={styles.button} onPress={toggleFavorites}>
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ebeaeb',
   },
   button: {
-    backgroundColor: '#754b73',
+    backgroundColor: '#754b73', 
     padding: 10,
     borderRadius: 20,
     marginBottom: 10,
@@ -120,4 +122,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BibliotecaScreen;
+export default CategoriaScreen;

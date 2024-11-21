@@ -3,24 +3,29 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import TabLayout from '../components/TabLayout';
 import { auth } from '../utils/FirebaseConfig'; // Importa tu configuración de Firebase
 import { signOut } from 'firebase/auth';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../types';
 
 const UsuarioScreen = () => {
   const [userName, setUserName] = useState('Usuario'); // Nombre del usuario
   const [profileImage, setProfileImage] = useState<any>(null); // Imagen de perfil
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     // Cargar datos del usuario
     const user = auth.currentUser;
     if (user) {
       setUserName(user.displayName || 'Usuario');
-      // Usar require para imágenes locales directamente
       setProfileImage(require('../imagenes/default-profile.png')); // Ruta correcta a tu imagen predeterminada
     }
   }, []);
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => console.log('Sesión cerrada'))
+      .then(() => {
+        console.log('Sesión cerrada');
+        navigation.navigate('LoginScreen'); // Redirigir a LoginScreen después de cerrar sesión
+      })
       .catch((error) => console.log('Error al cerrar sesión:', error));
   };
 
