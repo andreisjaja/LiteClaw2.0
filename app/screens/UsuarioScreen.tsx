@@ -24,7 +24,7 @@ const UsuarioScreen = () => {
     signOut(auth)
       .then(() => {
         console.log('Sesión cerrada');
-        navigation.navigate('LoginScreen'); // Redirigir a LoginScreen después de cerrar sesión
+        navigation.navigate('MainScreen'); // Redirigir a MainScreen después de cerrar sesión
       })
       .catch((error) => console.log('Error al cerrar sesión:', error));
   };

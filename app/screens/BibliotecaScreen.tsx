@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import SearchBar from '../components/SearchBar';
-import TabLayout from '../components/TabLayout'; 
-import { BackHandler } from 'react-native';
+import TabLayout from '../components/TabLayout';
 
 const BibliotecaScreen = () => {
   const [showFavorites, setShowFavorites] = useState(false);

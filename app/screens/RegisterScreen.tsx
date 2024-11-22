@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../types';
-import { auth } from '../utils/FirebaseConfig'; // Asegúrate de configurar Firebase aquí
+import { auth } from '../utils/FirebaseConfig'; // Asegurar de configurar Firebase
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 type RegisterScreenNavigationProp = NavigationProp<RootStackParamList, 'RegisterScreen'>;

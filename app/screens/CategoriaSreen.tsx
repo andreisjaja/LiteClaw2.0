@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import TabLayout from '../components/TabLayout'; // Importa el componente TabLayout
-import { BackHandler } from 'react-native';
 
 const CategoriaScreen = () => {
   const [showFavorites, setShowFavorites] = useState(false);
